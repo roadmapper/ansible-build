@@ -1,0 +1,9 @@
+FROM amazonlinux:2017.03
+LABEL author "Vinay Dandekar" \
+      maintainer "vindansam@hotmail.com"
+RUN yum -y install rpm-build asciidoc && \
+    yum clean all
+RUN pip install sphinx
+ADD entry.sh /root/
+ARG tag
+ENTRYPOINT ["/root/entry.sh"]

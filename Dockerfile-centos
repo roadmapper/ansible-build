@@ -1,0 +1,10 @@
+FROM centos:7
+LABEL author "Vinay Dandekar" \
+      maintainer "vindansam@hotmail.com"
+RUN yum -y install rpm-build asciidoc epel-release && \
+    yum install python-pip && \
+    yum clean all
+RUN pip install sphinx
+ADD entry.sh /root/
+ARG tag
+ENTRYPOINT ["/root/entry.sh"]
